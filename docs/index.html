@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Font Awesome DOCX, a Lua Filter to set the Font Awesome Icon font in DOCX</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/4972596cd3.js" crossorigin="anonymous"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Font Awesome DOCX, a Lua Filter to set the Font
+Awesome Icon font in DOCX</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#Example">Example</a>
+<ul>
+<li><a href="#input.md">input.md</a></li>
+<li><a href="#output.md">output.md</a></li>
+</ul></li>
+<li><a href="#Code">Code</a></li>
+</ul>
+</nav>
+<p>[[GitHub build status][CI badge]][CI workflow]</p>
+<p>Font Awesome DOCX is a Lua filter used to set the font of <a
+href="https://fontawesome.com/">Font Awesome</a> icons in Microsoft Word
+documents generated by Pandoc.</p>
+<p>If the font for your Microsoft Word document does not support Font
+Awesome icons, you will end up with blank squares or a random character
+instead of the icon you intended.</p>
+<p>This filter automates the setting of the font instead of having to
+manually post process the document after Pandoc generation</p>
+<p><strong>N.B: This filter is only relevant for Microsoft Word
+documents and does not support other document formats.</strong></p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before using this filter you would need to complete the following
+steps:</p>
+<ol type="1">
+<li><p>Download the Font Awesome Desktop fonts from <a
+href="https://fontawesome.com/download">Font Awesome Download</a> and
+install them on your computer.</p></li>
+<li><p>Then create a DOCX reference document by using the following
+command:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-o</span> custom-reference.docx <span class="at">--print-default-data-file</span> reference.docx</span></code></pre></div></li>
+<li><p>Next open the <code>custom-reference.docx</code> file in
+Microsoft Word and double click on the Styles Pane as annotated in the
+screenshot below:</p>
+<p><img src="../images/styles-pane.png" /></p></li>
+</ol>
+<p>The steps below guide you on how to create a New Style for the Font
+Awesome Regular Icons. You will need to repeat these steps for the Font
+Awesome Solid and Font Awesome Brands icons.</p>
+<p><strong>N.B. Ensure that the Font Awesome Solid style is named
+<em>FontAwesomeSolid</em>, and the Font Awesome Brands style is named
+<em>FontAwesomeBrands</em> so that the filter functions
+correctly.</strong></p>
+<ol type="1">
+<li><p>Click on the <em>New Style</em> button. The steps below guide you
+on how to create a Style for the</p>
+<p><img src="../images/new-style.png" /></p></li>
+<li><p>In the <em>Create New Style</em> dialog set the name of the style
+to <em>FontAwesomeRegular</em>.</p>
+<p><strong>N.B. If you name the style something else the filter will not
+function correctly.</strong></p></li>
+<li><p>Ensure that the <em>Style type</em> field is set to
+<em>Character</em>.</p></li>
+<li><p>Ensure that the <em>Style based on</em> field is set to
+<em>Default Paragraph Font</em>.</p></li>
+<li><p>Then choose the font for the Font Awesome regular icons by
+choosing the appropriate font and click <em>OK</em>.</p>
+<p>For the free version of Font Awesome the font name for the regular
+icons would be similar to <em>Font Awesome 6 Free Regular</em>.</p>
+<p>The annotated figure below shows all the settings described
+above:</p>
+<p><img src="../images/new-style-formatting-dialog.png" /></p>
+<p>The color of the icon matches the font color of the text in the Word
+document.</p>
+<p>You may optionally choose a color to change the icon’s appearance but
+this will change the color for all Font Awesome regular icons.</p></li>
+<li><p>Next add the text <em>FontAwesomeRegular</em> to the end of the
+<code>custom-reference.docx</code> reference document.</p></li>
+<li><p>Then, highlight the text you added above and scroll down the
+Styles Pane until you find the <em>FontAwesomeRegular</em> style. Then
+click on it to set the text to that style.</p>
+<p><img src="../images/font-awesome-regular-style.png" /></p></li>
+<li><p>Finally, save the <code>custom-reference.docx</code> reference
+document.</p></li>
+</ol>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>The Lua filter sets the font for Font Awesome icons by looking for a
+custom style that is appended to the Font Awesome icons in your Markdown
+source document.</p>
+<p>For example if you using the regular icon like so
+<i class="fa-regular fa-envelope"></i> in your Markdown source you
+should modify it to
+<code>[</code><i class="fa-regular fa-envelope" style="vertical-align: bottom;"></i><code>]{.fa-regular}</code>.</p>
+<p>For solid solid icons like
+<i class="fa-solid fa-mobile-screen-button"></i> you will need to change
+it to look like
+<code>[</code><i class="fa-solid fa-mobile-screen-button" style="vertical-align: bottom;"></i><code>]{.fa-solid}</code>.</p>
+<p>For brands icons like the github icon
+<i class="fa-brands fa-github"></i> you should change it to something
+like
+<code>[</code><i class="fa-brands fa-github" style="vertical-align: bottom;"></i><code>]{.fa-brands}</code>.</p>
+<p>Once you have made the above changes in your markdown run the
+following command:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-f</span> markdown <span class="at">-t</span> docx <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>--reference-doc custom-reference.docx <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>--lua-filter handle-font-awesome-docx.lua <span class="at">-o</span> output.docx input.md</span></code></pre></div>
+<p>You should now see the Font Awesome icons showing up in the resulting
+Word document.</p>
+<h2 id="license">License</h2>
+<p>This pandoc Lua filter is published under the MIT license, see file
+<code>LICENSE</code> for details.</p>
+<h2 id="Example">Example</h2>
+<h3 id="input.md">input.md</h3>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode markdown sample"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Font Awesome DOCX&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> &quot;Markdown Input File with []{.fa-regular} Font Awesome Icons&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Nandakumar Chandrasekhar []{.fa-regular}&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regular Icon in Heading []{.fa-regular}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solid Icon in Heading []{.fa-solid}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Brand Icon in Heading []{.fa-brands}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>The quick brown <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-brands} jumps over the lazy <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid}.</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lorem Ipsum []{.fa-solid}</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid}, sed do</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>eiusmod tempor incididunt ut labore et dolore <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid} aliqua. Ut enim</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ea commodo consequat. Duis aute irure <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid} in reprehenderit</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-regular} deserunt mollit anim id est <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-brands}.</span></code></pre></div>
+<h3 id="output.md">output.md</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode markdown sample"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> Nandakumar Chandrasekhar []{.fa-regular</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">  custom-style=&quot;FontAwesomeRegular&quot;}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> Markdown Input File with []{.fa-regular</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">  custom-style=&quot;FontAwesomeRegular&quot;} Font Awesome Icons</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Font Awesome DOCX</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regular Icon in Heading []{.fa-regular custom-style=&quot;FontAwesomeRegular&quot;}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solid Icon in Heading []{.fa-solid custom-style=&quot;FontAwesomeSolid&quot;}</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Brand Icon in Heading []{.fa-brands custom-style=&quot;FontAwesomeBrands&quot;}</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>The quick brown <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-brands custom-style=&quot;FontAwesomeBrands&quot;} jumps</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>over the lazy <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid custom-style=&quot;FontAwesomeSolid&quot;}.</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lorem Ipsum []{.fa-solid custom-style=&quot;FontAwesomeSolid&quot;}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>custom-style=&quot;FontAwesomeSolid&quot;}, sed do eiusmod tempor incididunt ut</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>labore et dolore <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid custom-style=&quot;FontAwesomeSolid&quot;} aliqua.</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ut aliquip ex ea commodo consequat. Duis aute irure <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-solid</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>custom-style=&quot;FontAwesomeSolid&quot;} in reprehenderit in voluptate velit</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>cupidatat non proident, sunt in culpa qui <span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-regular</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>custom-style=&quot;FontAwesomeRegular&quot;} deserunt mollit anim id est</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"></span><span class="co">]</span>{.fa-brands custom-style=&quot;FontAwesomeBrands&quot;}.</span></code></pre></div>
+<h2 id="Code">Code</h2>
+<p><a href="font-awesome-docx.lua">font-awesome-docx.lua</a></p>
+<div class="sourceCode" id="font-awesome-docx.lua"><pre
+class="sourceCode lua"><code class="sourceCode lua"><span id="font-awesome-docx.lua-1"><a href="#font-awesome-docx.lua-1" aria-hidden="true" tabindex="-1"></a><span class="co">--- font-awesome-docx.lua – Sets the font of Font Awesome Icons in DOCX</span></span>
+<span id="font-awesome-docx.lua-2"><a href="#font-awesome-docx.lua-2" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="font-awesome-docx.lua-3"><a href="#font-awesome-docx.lua-3" aria-hidden="true" tabindex="-1"></a><span class="co">--- Author: Nandakumaar Chandrasekhar</span></span>
+<span id="font-awesome-docx.lua-4"><a href="#font-awesome-docx.lua-4" aria-hidden="true" tabindex="-1"></a><span class="co">--- Copyright: © 2021–2022 Contributors</span></span>
+<span id="font-awesome-docx.lua-5"><a href="#font-awesome-docx.lua-5" aria-hidden="true" tabindex="-1"></a><span class="co">--- License: MIT – see LICENSE for details</span></span>
+<span id="font-awesome-docx.lua-6"><a href="#font-awesome-docx.lua-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="font-awesome-docx.lua-7"><a href="#font-awesome-docx.lua-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- Please create the FontAwesomeRegular, FontAwesomeSolid and</span></span>
+<span id="font-awesome-docx.lua-8"><a href="#font-awesome-docx.lua-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- FontAwesomeBrands styles in the reference docx before using this filter</span></span>
+<span id="font-awesome-docx.lua-9"><a href="#font-awesome-docx.lua-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- as stated in the README</span></span>
+<span id="font-awesome-docx.lua-10"><a href="#font-awesome-docx.lua-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="font-awesome-docx.lua-11"><a href="#font-awesome-docx.lua-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Makes sure users know if their pandoc version is too old for this</span></span>
+<span id="font-awesome-docx.lua-12"><a href="#font-awesome-docx.lua-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- filter.</span></span>
+<span id="font-awesome-docx.lua-13"><a href="#font-awesome-docx.lua-13" aria-hidden="true" tabindex="-1"></a><span class="cn">PANDOC_VERSION</span><span class="op">:</span>must_be_at_least <span class="st">&#39;2.17&#39;</span></span>
+<span id="font-awesome-docx.lua-14"><a href="#font-awesome-docx.lua-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="font-awesome-docx.lua-15"><a href="#font-awesome-docx.lua-15" aria-hidden="true" tabindex="-1"></a><span class="co">-- This function is called for every span element in the document.</span></span>
+<span id="font-awesome-docx.lua-16"><a href="#font-awesome-docx.lua-16" aria-hidden="true" tabindex="-1"></a><span class="co">-- If the span element has one of the custom styles of &#39;fa-regular&#39;,</span></span>
+<span id="font-awesome-docx.lua-17"><a href="#font-awesome-docx.lua-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- &#39;fa-solid&#39; or &#39;fa-brands&#39; the style of &#39;FontAwesomeRegular&#39;,</span></span>
+<span id="font-awesome-docx.lua-18"><a href="#font-awesome-docx.lua-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- &#39;FontAwesomeSolid&#39; or &#39;FontAwesomeBrands&#39; defined in the reference doc</span></span>
+<span id="font-awesome-docx.lua-19"><a href="#font-awesome-docx.lua-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- is added as an attribute to the span.</span></span>
+<span id="font-awesome-docx.lua-20"><a href="#font-awesome-docx.lua-20" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> Span<span class="op">(</span>span<span class="op">)</span></span>
+<span id="font-awesome-docx.lua-21"><a href="#font-awesome-docx.lua-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> span<span class="op">.</span>classes<span class="op">:</span>includes <span class="st">&quot;fa-regular&quot;</span> <span class="cf">then</span></span>
+<span id="font-awesome-docx.lua-22"><a href="#font-awesome-docx.lua-22" aria-hidden="true" tabindex="-1"></a>        span<span class="op">.</span>attributes<span class="op">[</span><span class="st">&#39;custom-style&#39;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;FontAwesomeRegular&quot;</span></span>
+<span id="font-awesome-docx.lua-23"><a href="#font-awesome-docx.lua-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> span</span>
+<span id="font-awesome-docx.lua-24"><a href="#font-awesome-docx.lua-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> span<span class="op">.</span>classes<span class="op">:</span>includes <span class="st">&quot;fa-solid&quot;</span> <span class="cf">then</span></span>
+<span id="font-awesome-docx.lua-25"><a href="#font-awesome-docx.lua-25" aria-hidden="true" tabindex="-1"></a>        span<span class="op">.</span>attributes<span class="op">[</span><span class="st">&#39;custom-style&#39;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;FontAwesomeSolid&quot;</span></span>
+<span id="font-awesome-docx.lua-26"><a href="#font-awesome-docx.lua-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> span</span>
+<span id="font-awesome-docx.lua-27"><a href="#font-awesome-docx.lua-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elseif</span> span<span class="op">.</span>classes<span class="op">:</span>includes <span class="st">&quot;fa-brands&quot;</span> <span class="cf">then</span></span>
+<span id="font-awesome-docx.lua-28"><a href="#font-awesome-docx.lua-28" aria-hidden="true" tabindex="-1"></a>        span<span class="op">.</span>attributes<span class="op">[</span><span class="st">&#39;custom-style&#39;</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;FontAwesomeBrands&quot;</span></span>
+<span id="font-awesome-docx.lua-29"><a href="#font-awesome-docx.lua-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> span</span>
+<span id="font-awesome-docx.lua-30"><a href="#font-awesome-docx.lua-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="font-awesome-docx.lua-31"><a href="#font-awesome-docx.lua-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">nil</span></span>
+<span id="font-awesome-docx.lua-32"><a href="#font-awesome-docx.lua-32" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div>
+</body>
+</html>
