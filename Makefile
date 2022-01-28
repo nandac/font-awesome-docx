@@ -26,8 +26,7 @@ UNIX_EPOCH = 1643338939
 # The automatic variable `$<` refers to the first dependency
 # (i.e., the filter file).
 test: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
-	export SOURCE_DATE_EPOCH=$(UNIX_EPOCH); \
-	$(PANDOC) -f markdown --lua-filter=$< -t docx --standalone test/input.md \
+	$(PANDOC) -f markdown --lua-filter $< -t docx --standalone test/input.md \
 		--reference-doc $(REFERENCE_DOC) | \
 		$(DIFF) test/expected.docx -
 
@@ -39,7 +38,7 @@ test: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
 # regenerated on each run, making the test pointless.
 test/expected.docx: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
 	export SOURCE_DATE_EPOCH=$(UNIX_EPOCH); \
-	$(PANDOC) -f markdown --lua-filter=$< --standalone -t docx -o $@ \
+	$(PANDOC) -f markdown --lua-filter $< --standalone -t docx -o $@ \
 		--reference-doc $(REFERENCE_DOC) test/input.md
 
 #
