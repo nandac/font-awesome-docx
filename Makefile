@@ -18,7 +18,7 @@ REFERENCE_DOC = test/custom-reference.docx
 # because the build timestamp is different.
 #
 # Please see: https://pandoc.org/MANUAL.html#reproducible-builds
-UNIX_EPOCH = 1643338939
+# UNIX_EPOCH = 1643338939
 
 # Test that running the filter on the sample input document yields
 # the expected output.
@@ -26,9 +26,9 @@ UNIX_EPOCH = 1643338939
 # The automatic variable `$<` refers to the first dependency
 # (i.e., the filter file).
 test: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
-	$(PANDOC) -f markdown --lua-filter $< -t docx --standalone test/input.md \
-		--reference-doc $(REFERENCE_DOC) | \
-		$(DIFF) test/expected.docx -
+	$(PANDOC) --lua-filter=$< --to=native --standalone \
+		--reference-doc=$(REFERENCE_DOC) test/input.md | \
+		$(DIFF) test/expected.native -
 
 # Ensure that the `test` target is run each time it's called.
 .PHONY: test
@@ -36,10 +36,10 @@ test: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
 # Re-generate the expected output. This file **must not** be a
 # dependency of the `test` target, as that would cause it to be
 # regenerated on each run, making the test pointless.
-test/expected.docx: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
-	export SOURCE_DATE_EPOCH=$(UNIX_EPOCH); \
-	$(PANDOC) -f markdown --lua-filter $< --standalone -t docx -o $@ \
-		--reference-doc $(REFERENCE_DOC) test/input.md
+test/expected.native: $(FILTER_FILE) $(REFERENCE_DOC) test/input.md
+	$(PANDOC) --lua-filter=$< --standalone --to=native \
+		--reference-doc=$(REFERENCE_DOC) --output=$@ \
+		test/input.md
 
 #
 # Docs

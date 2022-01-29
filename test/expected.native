@@ -1,0 +1,318 @@
+Pandoc
+  Meta
+    { unMeta =
+        fromList
+          [ ( "author"
+            , MetaInlines
+                [ Str "Nandakumar"
+                , Space
+                , Str "Chandrasekhar"
+                , Space
+                , Span
+                    ( ""
+                    , [ "fa-regular" ]
+                    , [ ( "custom-style" , "FontAwesomeRegular" ) ]
+                    )
+                    [ Str "\62041" ]
+                ]
+            )
+          , ( "subtitle"
+            , MetaInlines
+                [ Str "Markdown"
+                , Space
+                , Str "Input"
+                , Space
+                , Str "File"
+                , Space
+                , Str "with"
+                , Space
+                , Span
+                    ( ""
+                    , [ "fa-regular" ]
+                    , [ ( "custom-style" , "FontAwesomeRegular" ) ]
+                    )
+                    [ Str "\62132" ]
+                , Space
+                , Str "Font"
+                , Space
+                , Str "Awesome"
+                , Space
+                , Str "Icons"
+                ]
+            )
+          , ( "title"
+            , MetaInlines
+                [ Str "Font"
+                , Space
+                , Str "Awesome"
+                , Space
+                , Str "DOCX"
+                ]
+            )
+          ]
+    }
+  [ Header
+      2
+      ( "regular-icon-in-heading" , [] , [] )
+      [ Str "Regular"
+      , Space
+      , Str "Icon"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Heading"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-regular" ]
+          , [ ( "custom-style" , "FontAwesomeRegular" ) ]
+          )
+          [ Str "\61664" ]
+      ]
+  , Header
+      2
+      ( "solid-icon-in-heading" , [] , [] )
+      [ Str "Solid"
+      , Space
+      , Str "Icon"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Heading"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\61664" ]
+      ]
+  , Header
+      2
+      ( "brand-icon-in-heading" , [] , [] )
+      [ Str "Brand"
+      , Space
+      , Str "Icon"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Heading"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-brands" ]
+          , [ ( "custom-style" , "FontAwesomeBrands" ) ]
+          )
+          [ Str "\61595" ]
+      ]
+  , Para
+      [ Str "The"
+      , Space
+      , Str "quick"
+      , Space
+      , Str "brown"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-brands" ]
+          , [ ( "custom-style" , "FontAwesomeBrands" ) ]
+          )
+          [ Str "\62057" ]
+      , Space
+      , Str "jumps"
+      , Space
+      , Str "over"
+      , Space
+      , Str "the"
+      , Space
+      , Str "lazy"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\63187" ]
+      , Str "."
+      ]
+  , Header
+      3
+      ( "lorem-ipsum" , [] , [] )
+      [ Str "Lorem"
+      , Space
+      , Str "Ipsum"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\61497" ]
+      ]
+  , Para
+      [ Str "Lorem"
+      , Space
+      , Str "ipsum"
+      , Space
+      , Str "dolor"
+      , Space
+      , Str "sit"
+      , Space
+      , Str "amet,"
+      , Space
+      , Str "consectetur"
+      , Space
+      , Str "adipiscing"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\63423" ]
+      , Str ","
+      , Space
+      , Str "sed"
+      , Space
+      , Str "do"
+      , SoftBreak
+      , Str "eiusmod"
+      , Space
+      , Str "tempor"
+      , Space
+      , Str "incididunt"
+      , Space
+      , Str "ut"
+      , Space
+      , Str "labore"
+      , Space
+      , Str "et"
+      , Space
+      , Str "dolore"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\61558" ]
+      , Space
+      , Str "aliqua."
+      , Space
+      , Str "Ut"
+      , Space
+      , Str "enim"
+      , SoftBreak
+      , Str "ad"
+      , Space
+      , Str "minim"
+      , Space
+      , Str "veniam,"
+      , Space
+      , Str "quis"
+      , Space
+      , Str "nostrud"
+      , Space
+      , Str "exercitation"
+      , Space
+      , Str "ullamco"
+      , Space
+      , Str "laboris"
+      , Space
+      , Str "nisi"
+      , Space
+      , Str "ut"
+      , Space
+      , Str "aliquip"
+      , Space
+      , Str "ex"
+      , SoftBreak
+      , Str "ea"
+      , Space
+      , Str "commodo"
+      , Space
+      , Str "consequat."
+      , Space
+      , Str "Duis"
+      , Space
+      , Str "aute"
+      , Space
+      , Str "irure"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-solid" ]
+          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
+          )
+          [ Str "\62781" ]
+      , Space
+      , Str "in"
+      , Space
+      , Str "reprehenderit"
+      , SoftBreak
+      , Str "in"
+      , Space
+      , Str "voluptate"
+      , Space
+      , Str "velit"
+      , Space
+      , Str "esse"
+      , Space
+      , Str "cillum"
+      , Space
+      , Str "dolore"
+      , Space
+      , Str "eu"
+      , Space
+      , Str "fugiat"
+      , Space
+      , Str "nulla"
+      , Space
+      , Str "pariatur."
+      , SoftBreak
+      , Str "Excepteur"
+      , Space
+      , Str "sint"
+      , Space
+      , Str "occaecat"
+      , Space
+      , Str "cupidatat"
+      , Space
+      , Str "non"
+      , Space
+      , Str "proident,"
+      , Space
+      , Str "sunt"
+      , Space
+      , Str "in"
+      , Space
+      , Str "culpa"
+      , Space
+      , Str "qui"
+      , SoftBreak
+      , Span
+          ( ""
+          , [ "fa-regular" ]
+          , [ ( "custom-style" , "FontAwesomeRegular" ) ]
+          )
+          [ Str "\61869" ]
+      , Space
+      , Str "deserunt"
+      , Space
+      , Str "mollit"
+      , Space
+      , Str "anim"
+      , Space
+      , Str "id"
+      , Space
+      , Str "est"
+      , Space
+      , Span
+          ( ""
+          , [ "fa-brands" ]
+          , [ ( "custom-style" , "FontAwesomeBrands" ) ]
+          )
+          [ Str "\62102" ]
+      , Str "."
+      ]
+  ]
