@@ -53,8 +53,12 @@ Pandoc
     }
   [ Header
       2
-      ( "regular-icon-in-heading" , [] , [] )
-      [ Str "Regular"
+      ( "font-awesome-regular-icon-in-heading" , [] , [] )
+      [ Str "Font"
+      , Space
+      , Str "Awesome"
+      , Space
+      , Str "Regular"
       , Space
       , Str "Icon"
       , Space
@@ -71,8 +75,12 @@ Pandoc
       ]
   , Header
       2
-      ( "solid-icon-in-heading" , [] , [] )
-      [ Str "Solid"
+      ( "font-awesome-solid-icon-in-heading" , [] , [] )
+      [ Str "Font"
+      , Space
+      , Str "Awesome"
+      , Space
+      , Str "Solid"
       , Space
       , Str "Icon"
       , Space
@@ -89,8 +97,12 @@ Pandoc
       ]
   , Header
       2
-      ( "brand-icon-in-heading" , [] , [] )
-      [ Str "Brand"
+      ( "font-awesome-brand-icon-in-heading" , [] , [] )
+      [ Str "Font"
+      , Space
+      , Str "Awesome"
+      , Space
+      , Str "Brand"
       , Space
       , Str "Icon"
       , Space
@@ -104,6 +116,19 @@ Pandoc
           , [ ( "custom-style" , "FontAwesomeBrands" ) ]
           )
           [ Str "\61595" ]
+      ]
+  , Header
+      2
+      ( "font-awesome-icons-in-sentence" , [] , [] )
+      [ Str "Font"
+      , Space
+      , Str "Awesome"
+      , Space
+      , Str "Icons"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Sentence"
       ]
   , Para
       [ Str "The"
@@ -137,17 +162,16 @@ Pandoc
       ]
   , Header
       3
-      ( "lorem-ipsum" , [] , [] )
-      [ Str "Lorem"
+      ( "font-awesome-icons-in-paragraph" , [] , [] )
+      [ Str "Font"
       , Space
-      , Str "Ipsum"
+      , Str "Awesome"
       , Space
-      , Span
-          ( ""
-          , [ "fa-solid" ]
-          , [ ( "custom-style" , "FontAwesomeSolid" ) ]
-          )
-          [ Str "\61497" ]
+      , Str "Icons"
+      , Space
+      , Str "in"
+      , Space
+      , Str "Paragraph"
       ]
   , Para
       [ Str "Lorem"

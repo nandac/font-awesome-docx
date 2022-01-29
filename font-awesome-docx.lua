@@ -18,15 +18,15 @@ PANDOC_VERSION:must_be_at_least '2.17'
 -- 'FontAwesomeSolid' or 'FontAwesomeBrands' defined in the reference doc
 -- is added as an attribute to the span.
 function Span(span)
-    if span.classes:includes "fa-regular" then
-        span.attributes['custom-style'] = "FontAwesomeRegular"
-        return span
-    elseif span.classes:includes "fa-solid" then
-        span.attributes['custom-style'] = "FontAwesomeSolid"
-        return span
-    elseif span.classes:includes "fa-brands" then
-        span.attributes['custom-style'] = "FontAwesomeBrands"
-        return span
-    end
-    return nil
+  if span.classes:includes "fa-regular" then
+      span.attributes['custom-style'] = "FontAwesomeRegular"
+      return span
+  elseif span.classes:includes "fa-solid" then
+      span.attributes['custom-style'] = "FontAwesomeSolid"
+      return span
+  elseif span.classes:includes "fa-brands" then
+      span.attributes['custom-style'] = "FontAwesomeBrands"
+      return span
+  end
+  return nil
 end

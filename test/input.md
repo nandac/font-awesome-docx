@@ -3,15 +3,17 @@ title: "Font Awesome DOCX"
 subtitle: "Markdown Input File with []{.fa-regular} Font Awesome Icons"
 author: "Nandakumar Chandrasekhar []{.fa-regular}"
 ---
-## Regular Icon in Heading []{.fa-regular}
+## Font Awesome Regular Icon in Heading []{.fa-regular}
 
-## Solid Icon in Heading []{.fa-solid}
+## Font Awesome Solid Icon in Heading []{.fa-solid}
 
-## Brand Icon in Heading []{.fa-brands}
+## Font Awesome Brand Icon in Heading []{.fa-brands}
+
+## Font Awesome Icons in Sentence
 
 The quick brown []{.fa-brands} jumps over the lazy []{.fa-solid}.
 
-### Lorem Ipsum []{.fa-solid}
+### Font Awesome Icons in Paragraph
 
 Lorem ipsum dolor sit amet, consectetur adipiscing []{.fa-solid}, sed do
 eiusmod tempor incididunt ut labore et dolore []{.fa-solid} aliqua. Ut enim

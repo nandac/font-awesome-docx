@@ -5,20 +5,12 @@ FILTER_NAME = $(patsubst %.lua,%,$(FILTER_FILE))
 
 # Allow to use a different pandoc binary, e.g. when testing.
 PANDOC ?= pandoc
+
 # Allow to adjust the diff command if necessary
 DIFF = diff
 
 # Reference doc for DOCX
 REFERENCE_DOC = test/custom-reference.docx
-
-# Arbitrary Unix epoch so that we can specify the build timestamp in
-# the generated content the in SOURCE_DATE_EPOCH environment variable.
-#
-# This means that the generated output and expected output will not differ
-# because the build timestamp is different.
-#
-# Please see: https://pandoc.org/MANUAL.html#reproducible-builds
-# UNIX_EPOCH = 1643338939
 
 # Test that running the filter on the sample input document yields
 # the expected output.

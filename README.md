@@ -24,9 +24,9 @@ Before using this filter you would need to complete the following steps:
     pandoc -o custom-reference.docx --print-default-data-file reference.docx
     ```
 
-1. Next open the `custom-reference.docx` file in Microsoft Word and double click on the Styles Pane as annotated in the screenshot below:
+1. Next open the `custom-reference.docx` file in Microsoft Word and double click on the _Styles Panel_ as annotated in the screenshot below:
 
-    ![](images/styles-pane.png)
+    ![Styles Pane](images/styles-pane.png)
 
 The steps below guide you on how to create a New Style for the Font Awesome Regular Icons. You will need to repeat these steps for the Font Awesome Solid and Font Awesome Brands icons.
 
@@ -34,7 +34,7 @@ The steps below guide you on how to create a New Style for the Font Awesome Regu
 
 1. Click on the _New Style_ button. The steps below guide you on how to create a Style for the
 
-    ![](images/new-style.png)
+    ![New Style Button](images/new-style.png)
 
 1. In the _Create New Style_ dialog set the name of the style to _FontAwesomeRegular_.
 
@@ -50,7 +50,7 @@ The steps below guide you on how to create a New Style for the Font Awesome Regu
 
     The annotated figure below shows all the settings described above:
 
-    ![](images/new-style-formatting-dialog.png)
+    ![New Style Formatting Dialog](images/new-style-formatting-dialog.png)
 
     The color of the icon matches the font color of the text in the Word document.
 
@@ -60,7 +60,7 @@ The steps below guide you on how to create a New Style for the Font Awesome Regu
 
 1. Then, highlight the text you added above and scroll down the Styles Pane until you find the _FontAwesomeRegular_ style. Then click on it to set the text to that style.
 
-    ![](images/font-awesome-regular-style.png)
+    ![Font Awesome Regular Style in Styles Pane](images/font-awesome-regular-style.png)
 
 1. Finally, save the `custom-reference.docx` reference document.
 

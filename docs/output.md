@@ -6,16 +6,18 @@ subtitle: Markdown Input File with []{.fa-regular
 title: Font Awesome DOCX
 ---
 
-## Regular Icon in Heading []{.fa-regular custom-style="FontAwesomeRegular"}
+## Font Awesome Regular Icon in Heading []{.fa-regular custom-style="FontAwesomeRegular"}
 
-## Solid Icon in Heading []{.fa-solid custom-style="FontAwesomeSolid"}
+## Font Awesome Solid Icon in Heading []{.fa-solid custom-style="FontAwesomeSolid"}
 
-## Brand Icon in Heading []{.fa-brands custom-style="FontAwesomeBrands"}
+## Font Awesome Brand Icon in Heading []{.fa-brands custom-style="FontAwesomeBrands"}
+
+## Font Awesome Icons in Sentence
 
 The quick brown []{.fa-brands custom-style="FontAwesomeBrands"} jumps
 over the lazy []{.fa-solid custom-style="FontAwesomeSolid"}.
 
-### Lorem Ipsum []{.fa-solid custom-style="FontAwesomeSolid"}
+### Font Awesome Icons in Paragraph
 
 Lorem ipsum dolor sit amet, consectetur adipiscing []{.fa-solid
 custom-style="FontAwesomeSolid"}, sed do eiusmod tempor incididunt ut
