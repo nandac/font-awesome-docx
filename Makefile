@@ -50,6 +50,7 @@ docs: docs/index.html docs/$(FILTER_FILE)
 docs/index.html: README.md test/input.md $(FILTER_FILE) .tools/docs.lua \
 		docs/output.md docs/style.css
 	@mkdir -p docs
+	cp -r images docs/images
 	pandoc \
 	    --standalone \
 	    --lua-filter=.tools/docs.lua \
@@ -79,4 +80,4 @@ docs/$(FILTER_FILE): $(FILTER_FILE)
 
 .PHONY: clean
 clean:
-	rm -f docs/output.md docs/index.html docs/style.css
+	rm -rf docs/output.md docs/index.html docs/style.css docs/images
